@@ -1,0 +1,33 @@
+== stage dyn
+dyn: pi_m 0.973  alpha 1.46  kappa 0.0071/tick  sigma_f 2.12 t/sqrt(s)  theta_p 0.23  w_hit 0.33  w_opp 0.30  (criterion 43.9 on 8 moments)
+    R10      data   5.136 +- 0.433   sim (fresh seeds)   4.891   t = -0.6
+    rev120   data   0.731 +- 0.181   sim (fresh seeds)   1.964   t = +6.8
+    rev300   data   0.521 +- 0.265   sim (fresh seeds)   2.087   t = +5.9
+    acf1     data   0.629 +- 0.009   sim (fresh seeds)   0.585   t = -4.7
+    acf5     data   0.240 +- 0.019   sim (fresh seeds)   0.317   t = +4.0
+    acf10    data   0.128 +- 0.018   sim (fresh seeds)   0.222   t = +5.4
+    VR60     data   0.927 +- 0.069   sim (fresh seeds)   0.817   t = -1.6
+    VR300    data   0.696 +- 0.076   sim (fresh seeds)   0.846   t = +2.0
+== stage static
+L: m_ins 0.50  m_cx1 0.99  m_cxd 0.18  m_lo 0.17  (loss 0.0141)
+    spread_ticks           data    17.30   raw rates    11.24   fitted (fresh seeds)    16.07
+    depth5                 data   604.30   raw rates   816.45   fitted (fresh seeds)   597.64
+    q1                     data   123.93   raw rates   151.57   fitted (fresh seeds)   114.62
+    vol_ticks_per_sqrt_s   data     3.70   raw rates     5.00   fitted (fresh seeds)     3.83
+    mo_volume_per_s        data    54.76   raw rates    56.71   fitted (fresh seeds)    54.98
+M: m_ins 0.68  m_cx1 1.23  m_cxd 0.18  m_lo 0.26  (loss 0.0243)
+    spread_ticks           data    14.89   raw rates    11.60   fitted (fresh seeds)    14.84
+    depth5                 data   718.97   raw rates   860.98   fitted (fresh seeds)   677.93
+    q1                     data   147.74   raw rates   165.33   fitted (fresh seeds)   126.98
+    vol_ticks_per_sqrt_s   data     3.02   raw rates     4.68   fitted (fresh seeds)     3.67
+    mo_volume_per_s        data    54.23   raw rates    50.97   fitted (fresh seeds)    50.55
+H: m_ins 0.73  m_cx1 1.75  m_cxd 0.12  m_lo 0.63  (loss 0.0771)
+    spread_ticks           data    12.69   raw rates     8.27   fitted (fresh seeds)    10.73
+    depth5                 data   983.13   raw rates   894.11   fitted (fresh seeds)  1103.70
+    q1                     data   190.23   raw rates   172.01   fitted (fresh seeds)   179.27
+    vol_ticks_per_sqrt_s   data     3.49   raw rates     6.77   fitted (fresh seeds)     4.54
+    mo_volume_per_s        data   123.94   raw rates   120.03   fitted (fresh seeds)   126.65
+
+real	6m45.834s
+user	6m40.411s
+sys	0m1.937s

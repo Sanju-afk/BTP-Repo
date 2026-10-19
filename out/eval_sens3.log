@@ -1,0 +1,34 @@
+  shock   TWAP                         IS   4.06
+  M       TWAP                         IS   4.86
+  M       TWAP-LO                      IS   5.14
+  shock   TWAP-LO                      IS   3.61
+  M       VWAP                         IS   4.72
+  shock   VWAP                         IS   3.80
+  M       POV                          IS   5.86
+  shock   POV                          IS   3.82
+  M       AC                           IS   5.76
+  shock   AC                           IS   4.05
+  M       AC-adaptive                  IS   5.73
+  shock   AC-adaptive                  IS   4.02
+  M       lob_DDQN_mixed_s0            IS   3.25
+  shock   lob_DDQN_mixed_s0            IS   2.24
+  M       lob_DDQN_mixed_s1            IS   3.41
+  shock   lob_DDQN_mixed_s1            IS   2.35
+  M       lob_DDQN_mixed_s2            IS   3.39
+  shock   lob_DDQN_mixed_s2            IS   2.44
+  M       lob_DDQN_mixed_s3            IS   3.76
+  shock   lob_DDQN_mixed_s3            IS   2.48
+  M       lob_DDQN_mixed_s4            IS   3.19
+  M       lob_PPO_mixed_s0             IS   3.98
+  shock   lob_DDQN_mixed_s4            IS   2.79
+  M       lob_PPO_mixed_s1             IS   3.95
+  shock   lob_PPO_mixed_s0             IS   2.96
+  M       lob_PPO_mixed_s2             IS   3.36
+  shock   lob_PPO_mixed_s1             IS   2.87
+  M       lob_PPO_mixed_s3             IS   3.68
+  shock   lob_PPO_mixed_s2             IS   2.19
+  M       lob_PPO_mixed_s4             IS   3.82
+done M
+  shock   lob_PPO_mixed_s3             IS   2.61
+  shock   lob_PPO_mixed_s4             IS   3.19
+done shock

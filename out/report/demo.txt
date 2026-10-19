@@ -1,0 +1,15 @@
+schedule shock, test episode 7 (seed 10000007), models of training seed 0
+
+TWAP            IS  +5.31 bps   sold before T 100%   spread +1.05  impact +0.43  passive +0.00  delay +3.79  fees +0.05
+   child orders (step:shares/style): 0:300/MO  1:300/MO  2:300/MO  3:300/MO  4:300/MO  5:300/MO  6:300/MO  7:300/MO  8:300/MO  9:300/MO  10:300/MO  11:300/MO  12:300/MO  13:300/MO  14:300/MO  15:300/MO  16:300/MO  17:300/MO  18:300/MO  19:300/MO
+
+Almgren-Chriss  IS  -0.37 bps   sold before T 100%   spread +0.83  impact +1.05  passive +0.00  delay -2.29  fees +0.05
+   child orders (step:shares/style): 0:1634/MO  1:1189/MO  2:865/MO  3:630/MO  4:458/MO  5:333/MO  6:243/MO  7:177/MO  8:129/MO  9:94/MO  10:68/MO  11:50/MO  12:36/MO  13:27/MO  14:20/MO  15:15/MO  16:11/MO  17:9/MO  18:7/MO  19:5/MO
+
+DDQN            IS  -0.82 bps   sold before T 100%   spread +0.24  impact +0.20  passive -0.28  delay -0.98  fees +0.01
+   child orders (step:shares/style): 0:900/MO  1:900/IMPROVE  2:900/MO  3:900/IMPROVE  4:600/IMPROVE  5:900/JOIN  6:600/MO  7:350/MO
+
+PPO             IS  -1.20 bps   sold before T 100%   spread +0.38  impact +0.25  passive -0.18  delay -1.67  fees +0.01
+   child orders (step:shares/style): 0:900/MO  1:900/IMPROVE  2:600/MO  3:900/MO  4:900/JOIN  5:600/MO  6:900/IMPROVE  7:300/MO
+
+figure: out/report/fig_demo.png

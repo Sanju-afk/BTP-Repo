@@ -1,0 +1,16 @@
+{
+ "algo": "DDQN",
+ "train": "L",
+ "seed": 0,
+ "steps": 250000,
+ "world": "lob",
+ "oracle": false,
+ "hp": {
+  "lr": 0.0001,
+  "batch": 128,
+  "train_freq": 4
+ },
+ "tag": "",
+ "runs": "runs",
+ "obs_dim": 13
+}
