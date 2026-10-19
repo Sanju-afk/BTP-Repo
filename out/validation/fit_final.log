@@ -1,0 +1,25 @@
+== static moments (data vs final simulator, 200 fresh seeds per regime)
+  L spread_ticks           data    17.30   sim    16.06   -7%
+  L depth5                 data   604.30   sim   595.02   -2%
+  L q1                     data   123.93   sim   112.91   -9%
+  L vol_ticks_per_sqrt_s   data     3.70   sim     4.23   +14%
+  L mo_volume_per_s        data    54.76   sim    57.52   +5%
+  M spread_ticks           data    14.89   sim    15.76   +6%
+  M depth5                 data   718.97   sim   668.26   -7%
+  M q1                     data   147.74   sim   127.69   -14%
+  M vol_ticks_per_sqrt_s   data     3.02   sim     4.07   +34%
+  M mo_volume_per_s        data    54.23   sim    52.98   -2%
+  H spread_ticks           data    12.69   sim    10.90   -14%
+  H depth5                 data   983.13   sim  1072.32   +9%
+  H q1                     data   190.23   sim   177.92   -6%
+  H vol_ticks_per_sqrt_s   data     3.49   sim     4.77   +37%
+  H mo_volume_per_s        data   123.94   sim   128.25   +3%
+== dynamic moments, pooled over regimes (1000 fresh seeds per regime)
+  R10      data   5.136 +- 0.433   sim   4.373   t = -1.8
+  rev120   data   0.731 +- 0.181   sim   1.557   t = +4.6
+  rev300   data   0.521 +- 0.265   sim   1.135   t = +2.3
+  acf1     data   0.629 +- 0.009   sim   0.590   t = -4.2
+  acf5     data   0.240 +- 0.019   sim   0.308   t = +3.6
+  acf10    data   0.128 +- 0.018   sim   0.214   t = +4.9
+  VR60     data   0.927 +- 0.069   sim   0.850   t = -1.1
+  VR300    data   0.696 +- 0.076   sim   0.855   t = +2.1

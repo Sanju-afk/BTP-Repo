@@ -1,0 +1,15 @@
+{
+ "algo": "PPO",
+ "train": "H",
+ "seed": 1,
+ "steps": 250000,
+ "world": "lob",
+ "oracle": false,
+ "hp": {
+  "lr": 0.0003,
+  "ent": 0.0
+ },
+ "tag": "",
+ "runs": "runs",
+ "obs_dim": 13
+}

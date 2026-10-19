@@ -1,0 +1,75 @@
+condition      method  adaptation_index  seed_se                                                                                                           per_seed
+    shock DDQN[mixed]         -0.143656 0.021958      [-0.12303666666666668, -0.2243777777777778, -0.15487111111111107, -0.10394777777777775, -0.11204666666666674]
+    shock  PPO[mixed]         -0.045246 0.007956 [-0.06965777777777771, -0.055652222222222214, -0.023883333333333256, -0.041258888888888845, -0.035780000000000034]
+      HML DDQN[mixed]         -0.286924 0.014854       [-0.3268788888888893, -0.29942222222222203, -0.28917555555555563, -0.23550222222222195, -0.2836400000000002]
+      HML  PPO[mixed]         -0.074609 0.019979      [-0.0801744444444441, -0.12264999999999926, -0.00135777777777768, -0.07789333333333348, -0.09096777777777776]
+== 1. adaptation index (pace change after the switch minus pace change at the same step with no switch)
+condition             method  pace_before  pace_after  inv_at_switch  change  change_in_H  adaptation_index                                                                                                           per_seed  seed_se
+    shock                 AC         0.46        0.18           0.04   -0.28        -0.28              0.00                                                                                                                NaN      NaN
+    shock        AC-adaptive         0.45        0.17           0.04   -0.28        -0.27             -0.00                                                                                                                NaN      NaN
+    shock DDQN[mixed+oracle]         1.11        0.42           0.21   -0.69        -0.60             -0.09                                                                                                                NaN      NaN
+    shock        DDQN[mixed]         1.08        0.39           0.18   -0.69        -0.55             -0.14      [-0.12303666666666668, -0.2243777777777778, -0.15487111111111107, -0.10394777777777775, -0.11204666666666674]     0.02
+    shock                POV         1.43        0.77           0.30   -0.67        -0.30             -0.37                                                                                                                NaN      NaN
+    shock  PPO[mixed+oracle]         1.01        0.32           0.10   -0.68        -0.68             -0.01                                                                                                                NaN      NaN
+    shock         PPO[mixed]         0.99        0.23           0.09   -0.75        -0.71             -0.05 [-0.06965777777777771, -0.055652222222222214, -0.023883333333333256, -0.041258888888888845, -0.035780000000000034]     0.01
+    shock               TWAP         1.00        1.00           0.50    0.00         0.00              0.00                                                                                                                NaN      NaN
+    shock            TWAP-LO         0.74        0.63           0.63   -0.12        -0.02             -0.10                                                                                                                NaN      NaN
+    shock               VWAP         1.00        0.97           0.48   -0.02        -0.02              0.00                                                                                                                NaN      NaN
+      HML                 AC         1.16        0.46           0.11   -0.70        -0.70              0.00                                                                                                                NaN      NaN
+      HML        AC-adaptive         1.16        0.44           0.11   -0.71        -0.71             -0.00                                                                                                                NaN      NaN
+      HML DDQN[mixed+oracle]         1.51        0.86           0.38   -0.65        -0.43             -0.23                                                                                                                NaN      NaN
+      HML        DDQN[mixed]         1.54        0.77           0.35   -0.77        -0.48             -0.29       [-0.3268788888888893, -0.29942222222222203, -0.28917555555555563, -0.23550222222222195, -0.2836400000000002]     0.01
+      HML                POV         1.43        0.79           0.52   -0.64         0.01             -0.65                                                                                                                NaN      NaN
+      HML  PPO[mixed+oracle]         1.80        0.95           0.26   -0.85        -0.81             -0.03                                                                                                                NaN      NaN
+      HML         PPO[mixed]         1.82        0.89           0.25   -0.93        -0.86             -0.07      [-0.0801744444444441, -0.12264999999999926, -0.00135777777777768, -0.07789333333333348, -0.09096777777777776]     0.02
+      HML               TWAP         1.00        1.00           0.65    0.00         0.00              0.00                                                                                                                NaN      NaN
+      HML            TWAP-LO         0.73        0.59           0.75   -0.14         0.00             -0.14                                                                                                                NaN      NaN
+      HML               VWAP         1.03        1.00           0.63   -0.03        -0.03              0.00                                                                                                                NaN      NaN
+
+== 2. oracle (true regime observed) minus observable-only, mixed-trained agents; negative = information helps
+condition algo    metric  oracle_minus_observable    lo   hi
+        L DDQN objective                    -0.39 -0.85 0.07
+        L  PPO objective                     0.26 -0.07 0.60
+        M DDQN objective                    -0.30 -0.72 0.14
+        M  PPO objective                     0.11 -0.19 0.41
+        H DDQN objective                    -0.03 -0.39 0.35
+        H  PPO objective                    -0.19 -0.53 0.17
+      HML DDQN objective                    -0.03 -0.40 0.35
+      HML  PPO objective                    -0.17 -0.53 0.19
+    shock DDQN objective                     0.00 -0.42 0.43
+    shock  PPO objective                    -0.22 -0.58 0.12
+   markov DDQN objective                    -0.13 -0.54 0.28
+   markov  PPO objective                     0.07 -0.21 0.39
+
+== 3. rankings by objective (best first), idealised AC world vs calibrated LOB
+  L      Kendall tau-b = +0.62 (p = 0.06)
+     AC world: AC < AC-adaptive < PPO[mixed] < DDQN[mixed] < POV = VWAP = TWAP
+     LOB:      PPO[mixed] < AC < DDQN[mixed] < AC-adaptive < VWAP < TWAP < POV
+     deploying AC-world agents in the LOB costs DDQN +0.79 [+0.10, +1.42], PPO +1.57 [+1.15, +2.02] bps of objective
+  M      Kendall tau-b = +0.41 (p = 0.21)
+     AC world: AC < AC-adaptive < PPO[mixed] < DDQN[mixed] < POV = VWAP = TWAP
+     LOB:      PPO[mixed] < DDQN[mixed] < AC-adaptive < AC < VWAP < TWAP < POV
+     deploying AC-world agents in the LOB costs DDQN +0.81 [+0.31, +1.34], PPO +1.66 [+1.29, +2.05] bps of objective
+  H      Kendall tau-b = +0.31 (p = 0.35)
+     AC world: AC < AC-adaptive < PPO[mixed] < DDQN[mixed] < POV = VWAP = TWAP
+     LOB:      DDQN[mixed] < PPO[mixed] < AC-adaptive < AC < POV < VWAP < TWAP
+     deploying AC-world agents in the LOB costs DDQN +0.83 [+0.42, +1.27], PPO +0.68 [+0.30, +1.07] bps of objective
+  HML    Kendall tau-b = +0.49 (p = 0.13)
+     AC world: AC < AC-adaptive < PPO[mixed] < DDQN[mixed] < TWAP = VWAP < POV
+     LOB:      PPO[mixed] < AC-adaptive < AC < DDQN[mixed] < POV < TWAP < VWAP
+     deploying AC-world agents in the LOB costs DDQN +0.85 [+0.45, +1.28], PPO +0.85 [+0.45, +1.27] bps of objective
+  shock  Kendall tau-b = +0.39 (p = 0.22)
+     AC world: AC-adaptive = AC < PPO[mixed] < DDQN[mixed] < TWAP = VWAP < POV
+     LOB:      PPO[mixed] < DDQN[mixed] < AC-adaptive < AC < POV < VWAP < TWAP
+     deploying AC-world agents in the LOB costs DDQN +0.81 [+0.38, +1.23], PPO +0.72 [+0.31, +1.14] bps of objective
+
+== 4. sensitivity of the main comparisons (mixed-trained agents)
+        variant condition  TWAP IS  AC obj  DDQN[mixed] IS  PPO[mixed] IS  DDQN-TWAP IS  PPO-TWAP IS  PPO-DDQN IS PPO-DDQN IS CI  DDQN[mixed] obj  PPO[mixed] obj  PPO-DDQN obj PPO-DDQN obj CI
+           base         M     4.59    6.38            3.57           3.92         -1.02        -0.66         0.35 [+0.04, +0.66]             6.05            5.42         -0.63  [-1.01, -0.26]
+           base     shock     4.06    4.29            2.55           2.83         -1.51        -1.23         0.28 [-0.14, +0.67]             4.22            4.15         -0.08  [-0.48, +0.32]
+fast resilience         M     4.11    5.79            3.22           3.69         -0.90        -0.42         0.47 [+0.08, +0.90]             5.70            5.14         -0.56  [-1.07, -0.09]
+fast resilience     shock     3.69    3.90            2.12           2.45         -1.57        -1.24         0.33 [-0.05, +0.74]             3.77            3.75         -0.02  [-0.42, +0.37]
+  latency 0.5 s         M     4.88    6.26            3.54           4.03         -1.33        -0.84         0.49 [+0.03, +0.94]             6.05            5.52         -0.54  [-0.99, -0.09]
+  latency 0.5 s     shock     4.38    4.53            2.84           3.34         -1.54        -1.04         0.50 [-0.06, +1.03]             4.55            4.70          0.16  [-0.44, +0.75]
+        fees x3         M     4.86    6.36            3.40           3.76         -1.46        -1.11         0.35 [-0.09, +0.81]             5.86            5.25         -0.62  [-1.11, -0.11]
+        fees x3     shock     4.06    4.63            2.46           2.76         -1.60        -1.30         0.30 [-0.25, +0.81]             4.13            4.08         -0.05  [-0.63, +0.49]
