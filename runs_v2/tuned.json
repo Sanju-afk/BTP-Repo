@@ -1,0 +1,12 @@
+{
+ "QRDDQN-CVaR25": {
+  "lr": 0.0001,
+  "batch": 128,
+  "train_freq": 4
+ },
+ "QRDDQN-RN": {
+  "lr": 0.0001,
+  "batch": 64,
+  "train_freq": 1
+ }
+}
