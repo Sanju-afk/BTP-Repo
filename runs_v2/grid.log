@@ -15,3 +15,8 @@ runs_v2/lob_QRDDQN-CVaR10_mixed_s12: 12500 episodes, 1223 s, last-200 training I
 runs_v2/lob_QRDDQN-THR25_mixed_s12: 12500 episodes, 1173 s, last-200 training IS 4.08 bps
 runs_v2/lob_DDQN_mixed_s13: 12500 episodes, 347 s, last-200 training IS 2.47 bps
 runs_v2/lob_QRDDQN-RN_mixed_s12: 12500 episodes, 2146 s, last-200 training IS 2.64 bps
+runs_v2/lob_QRDDQN-CVaR25_mixed_s13: 12500 episodes, 1221 s, last-200 training IS 3.99 bps
+runs_v2/lob_QRDDQN-CVaR10_mixed_s13: 12500 episodes, 1205 s, last-200 training IS 4.29 bps
+runs_v2/lob_QRDDQN-THR25_mixed_s13: 12500 episodes, 1119 s, last-200 training IS 4.18 bps
+runs_v2/lob_DDQN_mixed_s14: 12500 episodes, 349 s, last-200 training IS 2.69 bps
+runs_v2/lob_QRDDQN-RN_mixed_s13: 12500 episodes, 2115 s, last-200 training IS 2.33 bps
