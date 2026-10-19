@@ -1,0 +1,11 @@
+{
+ "arm": "QRDDQN-RN",
+ "seed": 11,
+ "steps": 250000,
+ "runs": "runs_v2",
+ "hp": {
+  "lr": 0.0001,
+  "batch": 64,
+  "train_freq": 1
+ }
+}
