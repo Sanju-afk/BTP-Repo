@@ -20,7 +20,7 @@ from liqexec.env import N_ACTIONS, ExecutionEnv  # noqa: E402
 from liqexec.qr_ddqn import ARMS, QRDDQN         # noqa: E402
 
 # Arms whose hyperparameters are not tuned separately borrow those of a tuned arm (pre-registered).
-HP_FROM = {"QRDDQN-CVaR10": "QRDDQN-CVaR25", "QRDDQN-THR25": "QRDDQN-CVaR25"}
+HP_FROM = {"QRDDQN-CVaR10": "QRDDQN-CVaR25", "QRDDQN-THR25": "QRDDQN-CVaR25", "QRDDQN-RN4": "QRDDQN-CVaR25"}
 
 
 def make_agent(arm, seed, hp):

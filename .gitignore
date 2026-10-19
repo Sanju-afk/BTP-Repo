@@ -8,3 +8,5 @@ out/eval_ac/
 out/eval_sens_*/
 out/report_shipped/
 run_v2.log
+out_v2/eval/
+out_v2/eval_*/

@@ -184,4 +184,7 @@ ARMS = {
     "QRDDQN-CVaR25": dict(risk="cvar", alpha=0.25),
     "QRDDQN-CVaR10": dict(risk="cvar", alpha=0.10),
     "QRDDQN-THR25": dict(risk="threshold", alpha=0.25),
+    # exploratory control (added after the main results, not pre-registered): risk-neutral with the CVaR25
+    # arm's hyperparameters (train_freq 4), to separate the distribution from QRDDQN-RN's 4x update rate
+    "QRDDQN-RN4": dict(risk="mean"),
 }

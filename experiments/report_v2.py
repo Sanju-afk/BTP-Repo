@@ -230,9 +230,15 @@ def fig_scatter(overall, per_cond, path):
                     yerr=[[pos(r.cvar95 - r.cvar_lo)], [pos(r.cvar_hi - r.cvar95)]], fmt=MARK[a], ms=8, color=COL[a],
                     mec="white", mew=1.5, ecolor=COL[a], elinewidth=1.2, capsize=0, label=a)
         ax.annotate(a, (r["is"], r.cvar95), xytext=(7, 4), textcoords="offset points", fontsize=8, color=INK)
+    for b, mk in (("TWAP", "x"), ("AC", "*")):
+        t = per_cond[per_cond.arm == b]
+        if len(t):
+            ax.plot(t["is"].mean(), t.cvar95.mean(), mk, ms=9, color=INK2, label=f"{b} (baseline)")
+            ax.annotate(f"{b} (baseline)", (t["is"].mean(), t.cvar95.mean()), xytext=(7, 4), textcoords="offset points",
+                        fontsize=8, color=INK2)
     ax.set_xlabel("mean shortfall, bps (average of A–D3, 95% CI)", color=INK2, fontsize=9)
     ax.set_ylabel("CVaR95 of shortfall, bps (95% CI)", color=INK2, fontsize=9)
-    ax.set_title("Mean cost vs tail cost, agents trained on 'mixed' (10 seeds each)", fontsize=10, color=INK, loc="left")
+    ax.set_title("Mean cost vs tail cost (agents: 10 seeds each, trained on 'mixed')", fontsize=10, color=INK, loc="left")
     ax.legend(fontsize=7, frameon=False, loc="lower right")
     fig.tight_layout()
     fig.savefig(path, dpi=160)
@@ -343,8 +349,9 @@ def main():
     verdict_t = ("meaningful reduction (CI below -SESOI)" if t_hi < -SESOI_CVAR else "reduction (CI below 0)" if t_hi < 0
                  else f"no tail benefit beyond {-t_lo:.2f} bps" if t_lo < 0 else "tail worse (CI above 0)")
     verdict_m = "non-inferior" if m_hi < NI_MARGIN else "non-inferiority NOT shown"
-    print(f"  (i)  CVaR95 of IS: {fmt(t_pt)} bps [{fmt(t_lo)}, {fmt(t_hi)}]  p={t_p:.4f}  -> {verdict_t} (SESOI {SESOI_CVAR} bps)")
-    print(f"  (ii) mean IS:      {fmt(m_pt)} bps [{fmt(m_lo)}, {fmt(m_hi)}]  p={m_p:.4f}  -> {verdict_m} (margin +{NI_MARGIN} bps)")
+    pf = lambda p: "p<0.001" if p < 0.001 else f"p={p:.3f}"     # noqa: E731
+    print(f"  (i)  CVaR95 of IS: {fmt(t_pt)} bps [{fmt(t_lo)}, {fmt(t_hi)}]  {pf(t_p)}  -> {verdict_t} (SESOI {SESOI_CVAR} bps)")
+    print(f"  (ii) mean IS:      {fmt(m_pt)} bps [{fmt(m_lo)}, {fmt(m_hi)}]  {pf(m_p)}  -> {verdict_m} (margin +{NI_MARGIN} bps)")
     prim = pd.DataFrame([{"contrast": "CVaR95 IS, CVaR25 - DDQN", "diff": t_pt, "lo": t_lo, "hi": t_hi, "p": t_p, "verdict": verdict_t},
                          {"contrast": "mean IS, CVaR25 - DDQN", "diff": m_pt, "lo": m_lo, "hi": m_hi, "p": m_p, "verdict": verdict_m}])
     prim.to_csv(os.path.join(args.out, "primary.csv"), index=False)
@@ -403,6 +410,24 @@ def main():
     if len(cal):
         print(cal.groupby(["arm", "condition"])[["mean_abs_quantile_err", "pred_mean", "real_mean", "pred_cvar25", "real_cvar25"]]
               .mean().to_string(float_format=lambda x: f"{x:.3f}"))
+
+    print("\n" + "=" * 100)
+    print("SENSITIVITY (500 episodes, settings B and D2 pooled): arm minus DDQN, paired seed-episode bootstrap")
+    sens = []
+    for name, d in (("fast resilience (kappa x2)", "out_v2/eval_sens_fastres"), ("latency 0.5 s", "out_v2/eval_sens_latency"),
+                    ("fees x3", "out_v2/eval_sens_fees")):
+        if not glob.glob(os.path.join(d, "*.csv")):
+            continue
+        ds = load(d)
+        for arm in ARMS[1:]:
+            for stat in ("cvar", "mean"):
+                pt, lo, hi, p = paired_stats(ds, CONTROL, arm, ["M", "shock"], rng, stat=stat)
+                sens.append({"variant": name, "arm": arm, "stat": "CVaR95" if stat == "cvar" else "mean",
+                             "diff": pt, "lo": lo, "hi": hi})
+    sens = pd.DataFrame(sens)
+    if len(sens):
+        sens.to_csv(os.path.join(args.out, "sensitivity.csv"), index=False)
+        print(sens.to_string(index=False, float_format=lambda x: f"{x:+.3f}"))
 
     fig_scatter(ov, tab, os.path.join(args.out, "fig_cvar_vs_mean.png"))
     fig_hist(df, os.path.join(args.out, "fig_cost_hist.png"))
