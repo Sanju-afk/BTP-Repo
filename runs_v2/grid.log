@@ -1,0 +1,17 @@
+70 of 70 runs to do
+runs_v2/lob_DDQN_lam1_s10: 12500 episodes, 335 s, last-200 training IS 3.04 bps
+runs_v2/lob_DDQN_lam0_s10: 12500 episodes, 336 s, last-200 training IS 3.55 bps
+runs_v2/lob_DDQN_lam2_s10: 12500 episodes, 338 s, last-200 training IS 3.14 bps
+runs_v2/lob_DDQN_lam0.5_s10: 12500 episodes, 339 s, last-200 training IS 3.43 bps
+runs_v2/lob_DDQN_lam8_s10: 12500 episodes, 324 s, last-200 training IS 3.85 bps
+runs_v2/lob_DDQN_lam4_s10: 12500 episodes, 328 s, last-200 training IS 3.51 bps
+runs_v2/lob_DDQN_lam0_s11: 12500 episodes, 324 s, last-200 training IS 2.70 bps
+runs_v2/lob_DDQN_lam0.5_s11: 12500 episodes, 323 s, last-200 training IS 4.07 bps
+runs_v2/lob_DDQN_lam4_s11: 12500 episodes, 311 s, last-200 training IS 4.51 bps
+runs_v2/lob_DDQN_lam1_s11: 12500 episodes, 315 s, last-200 training IS 3.55 bps
+runs_v2/lob_DDQN_lam8_s11: 12500 episodes, 319 s, last-200 training IS 4.53 bps
+runs_v2/lob_DDQN_lam2_s11: 12500 episodes, 324 s, last-200 training IS 4.45 bps
+runs_v2/lob_DDQN_lam0_s12: 12500 episodes, 314 s, last-200 training IS 2.45 bps
+runs_v2/lob_DDQN_lam0.5_s12: 12500 episodes, 322 s, last-200 training IS 2.70 bps
+runs_v2/lob_DDQN_lam1_s12: 12500 episodes, 315 s, last-200 training IS 3.36 bps
+runs_v2/lob_DDQN_lam2_s12: 12500 episodes, 317 s, last-200 training IS 3.29 bps

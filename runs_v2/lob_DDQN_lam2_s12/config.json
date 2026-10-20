@@ -1,0 +1,12 @@
+{
+ "algo": "DDQN",
+ "lam": 2.0,
+ "seed": 12,
+ "steps": 250000,
+ "runs": "runs_v2",
+ "hp": {
+  "lr": 0.0001,
+  "batch": 128,
+  "train_freq": 4
+ }
+}
