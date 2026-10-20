@@ -204,4 +204,17 @@ fast resilience (kappa x2)  QRDDQN-THR25   mean +1.545 +1.397 +1.702
                    fees x3  QRDDQN-THR25 CVaR95 -3.093 -4.498 -1.621
                    fees x3  QRDDQN-THR25   mean +1.828 +1.644 +2.024
 
+====================================================================================================
+EXPLORATORY (not pre-registered): QRDDQN-RN4 = risk-neutral QR-DDQN with the CVaR25 arm's hyperparameters
+            b          a   stat   diff     lo     hi      p
+   QRDDQN-RN4       DDQN CVaR95 -0.909 -1.980 +0.143 +0.087
+   QRDDQN-RN4       DDQN   mean +0.111 -0.049 +0.289 +0.174
+   QRDDQN-RN4  QRDDQN-RN CVaR95 +2.104 +1.051 +3.163 +0.000
+   QRDDQN-RN4  QRDDQN-RN   mean +0.223 +0.099 +0.350 +0.000
+   QRDDQN-RN4        PPO CVaR95 +1.413 -0.830 +3.346 +0.195
+   QRDDQN-RN4        PPO   mean -0.109 -0.236 +0.035 +0.132
+QRDDQN-CVaR25 QRDDQN-RN4 CVaR95 -5.089 -6.318 -3.864 +0.000
+QRDDQN-CVaR25 QRDDQN-RN4   mean +1.313 +1.155 +1.455 +0.000
+QRDDQN-RN4: sold before T 0.928, limit share 0.638, objective 5.043
+
 figures and CSVs in out_v2/report

@@ -220,26 +220,36 @@ def calibration(df, runs_dir, conds=("M", "shock"), episodes=200):
 
 
 # ------------------------------------------------------------------ figures
+SHORT = {"DDQN": "DDQN", "PPO": "PPO", "QRDDQN-RN": "QR-RN", "QRDDQN-CVaR25": "QR-CVaR25 (primary)",
+         "QRDDQN-CVaR10": "QR-CVaR10", "QRDDQN-THR25": "QR-THR25", "TWAP": "TWAP (baseline)", "AC": "AC (baseline)"}
+OFFSET = {"QRDDQN-CVaR25": (-10, -14), "QRDDQN-CVaR10": (8, 6), "QRDDQN-THR25": (8, 6), "TWAP": (-10, -14),
+          "AC": (-12, -4)}
+
+
 def fig_scatter(overall, per_cond, path):
-    fig, ax = plt.subplots(figsize=(6.4, 4.2))
+    fig, ax = plt.subplots(figsize=(6.8, 4.4))
     style(ax)
-    for _, r in overall.iterrows():
-        a = r.arm
-        pos = lambda v: max(0.0, v)                                     # noqa: E731
-        ax.errorbar(r["is"], r.cvar95, xerr=[[pos(r["is"] - r.is_lo)], [pos(r.is_hi - r["is"])]],
-                    yerr=[[pos(r.cvar95 - r.cvar_lo)], [pos(r.cvar_hi - r.cvar95)]], fmt=MARK[a], ms=8, color=COL[a],
-                    mec="white", mew=1.5, ecolor=COL[a], elinewidth=1.2, capsize=0, label=a)
-        ax.annotate(a, (r["is"], r.cvar95), xytext=(7, 4), textcoords="offset points", fontsize=8, color=INK)
+    pos = lambda v: max(0.0, v)                                         # noqa: E731
     for b, mk in (("TWAP", "x"), ("AC", "*")):
         t = per_cond[per_cond.arm == b]
         if len(t):
-            ax.plot(t["is"].mean(), t.cvar95.mean(), mk, ms=9, color=INK2, label=f"{b} (baseline)")
-            ax.annotate(f"{b} (baseline)", (t["is"].mean(), t.cvar95.mean()), xytext=(7, 4), textcoords="offset points",
-                        fontsize=8, color=INK2)
-    ax.set_xlabel("mean shortfall, bps (average of A–D3, 95% CI)", color=INK2, fontsize=9)
-    ax.set_ylabel("CVaR95 of shortfall, bps (95% CI)", color=INK2, fontsize=9)
-    ax.set_title("Mean cost vs tail cost (agents: 10 seeds each, trained on 'mixed')", fontsize=10, color=INK, loc="left")
-    ax.legend(fontsize=7, frameon=False, loc="lower right")
+            x, y = t["is"].mean(), t.cvar95.mean()
+            ax.plot(x, y, mk, ms=10, color=INK2)
+            dx, dy = OFFSET[b]
+            ax.annotate(SHORT[b], (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=8, color=INK2,
+                        ha="right" if dx < 0 else "left")
+    for _, r in overall.iterrows():
+        a = r.arm
+        ax.errorbar(r["is"], r.cvar95, xerr=[[pos(r["is"] - r.is_lo)], [pos(r.is_hi - r["is"])]],
+                    yerr=[[pos(r.cvar95 - r.cvar_lo)], [pos(r.cvar_hi - r.cvar95)]], fmt=MARK[a], ms=8, color=COL[a],
+                    mec="white", mew=1.5, ecolor=COL[a], elinewidth=1.2, capsize=0)
+        dx, dy = OFFSET.get(a, (8, 6))
+        ax.annotate(SHORT[a], (r["is"], r.cvar95), xytext=(dx, dy), textcoords="offset points", fontsize=8, color=INK,
+                    ha="right" if dx < 0 else "left")
+    ax.set_xlabel("mean shortfall, bps (average of settings A–D3)", color=INK2, fontsize=9)
+    ax.set_ylabel("CVaR95 of shortfall, bps", color=INK2, fontsize=9)
+    ax.set_title("Mean vs tail cost; bars are 95% CIs (agents: 10 seeds, trained on 'mixed')", fontsize=9.5, color=INK,
+                 loc="left")
     fig.tight_layout()
     fig.savefig(path, dpi=160)
     plt.close(fig)
@@ -267,21 +277,20 @@ def fig_hist(df, path, arms=("DDQN", "PPO", "QRDDQN-RN", "QRDDQN-CVaR25"), conds
 
 
 def fig_sold(tab, path):
-    fig, ax = plt.subplots(figsize=(7.2, 3.6))
+    fig, ax = plt.subplots(figsize=(7.6, 3.8))
     style(ax)
     arms = [a for a in ARMS if a in set(tab.arm)]
     w = 0.8 / len(arms)
     x = np.arange(len(CONDS))
     for i, a in enumerate(arms):
         t = tab[tab.arm == a].set_index("condition").reindex(CONDS)
-        ax.bar(x + (i - (len(arms) - 1) / 2) * w, 100 * t.sold_before_T, w * 0.9, color=COL[a], label=a,
+        ax.bar(x + (i - (len(arms) - 1) / 2) * w, 100 * t.forced, w * 0.9, color=COL[a], label=SHORT[a],
                edgecolor="white", lw=1)
     ax.set_xticks(x, [COND_LABEL[c] for c in CONDS], fontsize=7)
-    lo = 100 * tab[tab.arm.isin(arms)].sold_before_T.min()
-    ax.set_ylim(max(0, lo - 3), 100)
-    ax.set_ylabel("% of X sold before T", color=INK2, fontsize=8)
-    ax.set_title("Inventory left to the forced sweep at T", fontsize=10, color=INK, loc="left")
-    ax.legend(fontsize=7, frameon=False, ncol=3, loc="lower left")
+    ax.set_ylabel("% of X sold by the forced order at T", color=INK2, fontsize=8)
+    ax.set_title("Inventory left to the forced end-of-horizon sweep (lower = more sold before T)", fontsize=9.5,
+                 color=INK, loc="left")
+    ax.legend(fontsize=7, frameon=False, ncol=6, loc="upper center", bbox_to_anchor=(0.5, -0.12))
     fig.tight_layout()
     fig.savefig(path, dpi=160)
     plt.close(fig)
@@ -429,9 +438,25 @@ def main():
         sens.to_csv(os.path.join(args.out, "sensitivity.csv"), index=False)
         print(sens.to_string(index=False, float_format=lambda x: f"{x:+.3f}"))
 
+    if glob.glob(os.path.join("out_v2/eval_rn4", "*.csv")):
+        print("\n" + "=" * 100)
+        print("EXPLORATORY (not pre-registered): QRDDQN-RN4 = risk-neutral QR-DDQN with the CVaR25 arm's hyperparameters")
+        dx = pd.concat([df, load("out_v2/eval_rn4")], ignore_index=True)
+        ex = []
+        for a, b in (("DDQN", "QRDDQN-RN4"), ("QRDDQN-RN", "QRDDQN-RN4"), ("PPO", "QRDDQN-RN4"), ("QRDDQN-RN4", "QRDDQN-CVaR25")):
+            for stat in ("cvar", "mean"):
+                pt, lo, hi, p = paired_stats(dx, a, b, CONDS, rng, stat=stat)
+                ex.append({"b": b, "a": a, "stat": "CVaR95" if stat == "cvar" else "mean", "diff": pt, "lo": lo, "hi": hi, "p": p})
+        ex = pd.DataFrame(ex)
+        ex.to_csv(os.path.join(args.out, "exploratory_rn4.csv"), index=False)
+        print(ex.to_string(index=False, float_format=lambda x: f"{x:+.3f}"))
+        g = dx[dx.arm == "QRDDQN-RN4"]
+        print(f"QRDDQN-RN4: sold before T {g.completion.mean():.3f}, limit share {g.limit_share.mean():.3f}, "
+              f"objective {g.objective.mean():.3f}")
+
     fig_scatter(ov, tab, os.path.join(args.out, "fig_cvar_vs_mean.png"))
     fig_hist(df, os.path.join(args.out, "fig_cost_hist.png"))
-    fig_sold(tab, os.path.join(args.out, "fig_sold_before_T.png"))
+    fig_sold(tab, os.path.join(args.out, "fig_forced_sweep.png"))
     fig_calib(curves, os.path.join(args.out, "fig_quantile_calibration.png"))
     fig_learning(args.runs, os.path.join(args.out, "fig_learning.png"))
     print("\nfigures and CSVs in", args.out)
