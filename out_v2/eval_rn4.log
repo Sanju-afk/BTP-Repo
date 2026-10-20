@@ -1,0 +1,67 @@
+  L       lob_QRDDQN-RN4_mixed_s10         IS   4.38
+  M       lob_QRDDQN-RN4_mixed_s10         IS   3.71
+  HML     lob_QRDDQN-RN4_mixed_s10         IS   2.99
+  H       lob_QRDDQN-RN4_mixed_s10         IS   2.72
+  M       lob_QRDDQN-RN4_mixed_s11         IS   3.93
+  L       lob_QRDDQN-RN4_mixed_s11         IS   3.95
+  HML     lob_QRDDQN-RN4_mixed_s11         IS   3.05
+  H       lob_QRDDQN-RN4_mixed_s11         IS   2.11
+  M       lob_QRDDQN-RN4_mixed_s12         IS   3.50
+  L       lob_QRDDQN-RN4_mixed_s12         IS   3.65
+  HML     lob_QRDDQN-RN4_mixed_s12         IS   2.90
+  H       lob_QRDDQN-RN4_mixed_s12         IS   2.45
+  M       lob_QRDDQN-RN4_mixed_s13         IS   3.43
+  L       lob_QRDDQN-RN4_mixed_s13         IS   3.99
+  HML     lob_QRDDQN-RN4_mixed_s13         IS   2.53
+  H       lob_QRDDQN-RN4_mixed_s13         IS   1.90
+  M       lob_QRDDQN-RN4_mixed_s14         IS   3.80
+  L       lob_QRDDQN-RN4_mixed_s14         IS   4.18
+  HML     lob_QRDDQN-RN4_mixed_s14         IS   2.71
+  H       lob_QRDDQN-RN4_mixed_s14         IS   2.23
+  M       lob_QRDDQN-RN4_mixed_s15         IS   3.82
+  L       lob_QRDDQN-RN4_mixed_s15         IS   4.06
+  HML     lob_QRDDQN-RN4_mixed_s15         IS   2.99
+  H       lob_QRDDQN-RN4_mixed_s15         IS   1.85
+  M       lob_QRDDQN-RN4_mixed_s16         IS   3.35
+  L       lob_QRDDQN-RN4_mixed_s16         IS   3.54
+  HML     lob_QRDDQN-RN4_mixed_s16         IS   2.86
+  H       lob_QRDDQN-RN4_mixed_s16         IS   2.67
+  M       lob_QRDDQN-RN4_mixed_s17         IS   3.65
+  L       lob_QRDDQN-RN4_mixed_s17         IS   4.27
+  HML     lob_QRDDQN-RN4_mixed_s17         IS   2.56
+  M       lob_QRDDQN-RN4_mixed_s18         IS   3.88
+  H       lob_QRDDQN-RN4_mixed_s17         IS   2.21
+  L       lob_QRDDQN-RN4_mixed_s18         IS   4.03
+  HML     lob_QRDDQN-RN4_mixed_s18         IS   2.65
+  M       lob_QRDDQN-RN4_mixed_s19         IS   3.61
+done M
+  L       lob_QRDDQN-RN4_mixed_s19         IS   4.52
+done L
+  H       lob_QRDDQN-RN4_mixed_s18         IS   2.23
+  HML     lob_QRDDQN-RN4_mixed_s19         IS   3.29
+done HML
+  shock   lob_QRDDQN-RN4_mixed_s10         IS   2.91
+  markov  lob_QRDDQN-RN4_mixed_s10         IS   3.68
+  H       lob_QRDDQN-RN4_mixed_s19         IS   2.98
+done H
+  shock   lob_QRDDQN-RN4_mixed_s11         IS   2.46
+  markov  lob_QRDDQN-RN4_mixed_s11         IS   3.49
+  shock   lob_QRDDQN-RN4_mixed_s12         IS   2.57
+  markov  lob_QRDDQN-RN4_mixed_s12         IS   3.01
+  shock   lob_QRDDQN-RN4_mixed_s13         IS   2.43
+  markov  lob_QRDDQN-RN4_mixed_s13         IS   3.05
+  shock   lob_QRDDQN-RN4_mixed_s14         IS   2.41
+  markov  lob_QRDDQN-RN4_mixed_s14         IS   3.14
+  shock   lob_QRDDQN-RN4_mixed_s15         IS   2.47
+  markov  lob_QRDDQN-RN4_mixed_s15         IS   3.20
+  shock   lob_QRDDQN-RN4_mixed_s16         IS   2.85
+  markov  lob_QRDDQN-RN4_mixed_s16         IS   3.33
+  shock   lob_QRDDQN-RN4_mixed_s17         IS   2.61
+  markov  lob_QRDDQN-RN4_mixed_s17         IS   3.03
+  shock   lob_QRDDQN-RN4_mixed_s18         IS   2.54
+  markov  lob_QRDDQN-RN4_mixed_s18         IS   3.36
+  shock   lob_QRDDQN-RN4_mixed_s19         IS   3.16
+done shock
+  markov  lob_QRDDQN-RN4_mixed_s19         IS   3.49
+done markov
+FINISHED
