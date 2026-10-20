@@ -74,17 +74,3 @@ come from maximum-likelihood estimates on the data or from simulated-moment fits
 calibration and validation logs are in `out/calib/` and `out/validation/`. Trained models (5 seeds × every configuration) are in
 `runs/`. The per-episode evaluation CSVs (`out/eval*/`, about 120 MB) are not included; `run_all.sh` step 8 regenerates them.
 
-## v2 extension: tail-risk-aware distributional agents (October 2026)
-
-New files only; the Phase-1 code, models and outputs above are unchanged and `reproduce.sh` still applies.
-
-| What | Where |
-| --- | --- |
-| Literature check, compute plan, pre-registration | `docs/v2/literature_check.md`, `docs/v2/compute_plan.md`, `docs/v2/preregistration.md` |
-| QR-DDQN agent (risk-neutral, CVaR-greedy, threshold CVaR) | `liqexec/qr_ddqn.py`, tests in `tests/test_qr.py` |
-| Tuning, training, evaluation, report | `experiments/{tune,train,run_grid,evaluate,report}_v2.py`, all run by `./run_v2.sh` (about 7 h on 4 cores) |
-| Trained models and logs | `runs_v2/` (6 pre-registered arms and 1 exploratory control, seeds 10-19) |
-| Results | `out_v2/report.txt`, tables and figures in `out_v2/report/` |
-| Report section and slides (built from the CSVs) | `docs/v2/build_docs.py` → `docs/v2/Report_Section_5.12_CVaR.docx`, `docs/v2/Slides_CVaR_extension.pptx` |
-
-The per-episode evaluation CSVs (`out_v2/eval*/`, about 160 MB) are not in git; `run_v2.sh` step 4 regenerates them.
